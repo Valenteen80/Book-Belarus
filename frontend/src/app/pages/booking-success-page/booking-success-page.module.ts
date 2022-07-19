@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BookingSuccessPageComponent } from './booking-success-page.component';
+import { BookingSuccessPageRoutingModule } from './booking-success-page-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BookingSuccessPageComponent],
   imports: [
-    CommonModule
+    BookingSuccessPageRoutingModule,
+    SharedModule
   ]
 })
+
 export class BookingSuccessPageModule { }

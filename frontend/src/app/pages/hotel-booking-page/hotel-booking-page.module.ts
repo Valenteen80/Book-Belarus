@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HotelBookingPageComponent } from './hotel-booking-page.component';
+import { HotelBookingPageRoutingModule } from './hotel-booking-page-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [HotelBookingPageComponent],
   imports: [
-    CommonModule
+    HotelBookingPageRoutingModule,
+    SharedModule
   ]
 })
 export class HotelBookingPageModule { }
