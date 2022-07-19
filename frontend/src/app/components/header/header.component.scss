@@ -1,0 +1,17 @@
+@import "../../../assets/scss/colors";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.header {
+    @include display-flex($spaceBetween, $center);
+    background-color: $yellow;
+    height: 50px;
+    border-bottom: solid 2px $orange;
+
+    &-title {
+        text-transform: uppercase;
+        margin-left: 15px;
+        color: $brown;
+        font-size: 2rem;
+    }
+}

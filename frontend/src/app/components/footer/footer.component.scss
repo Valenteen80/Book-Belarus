@@ -1,0 +1,25 @@
+@import "../../../assets/scss/colors";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.footer {
+    @include display-flex($spaceBetween, $center);
+    flex-wrap: nowrap;
+    border-top: 2px solid $orange;
+    background-color: $yellow;
+    height: 50px;
+
+    .name__store {
+        @include break-point($laptop) {
+            @include display-flex($spaceBetween, $center);
+            flex-direction: column;
+        }
+        margin-left: 15px;
+        color: $brown;
+        font-size: 2rem;
+
+        .title {
+            text-transform: uppercase;
+        }
+    }
+}

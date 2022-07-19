@@ -1,0 +1,15 @@
+@import "../scss/variables";
+@import "../scss/colors";
+
+@mixin display-flex($justifyContent: $flexStart, $alignItems: $flexStart) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: wrap;
+}
+
+@mixin break-point($max-width) {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
