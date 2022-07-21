@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {DropdownModule} from 'primeng/dropdown';
+import {CalendarModule} from 'primeng/calendar';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 
@@ -9,7 +12,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [MainPageComponent],
   imports: [
     MainPageRoutingModule,
-    SharedModule
+    SharedModule,
+    DropdownModule,
+    CalendarModule,
+    InputNumberModule
   ]
 })
 export class MainPageModule { }
