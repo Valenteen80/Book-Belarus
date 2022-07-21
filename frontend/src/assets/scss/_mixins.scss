@@ -8,6 +8,12 @@
   flex-wrap: wrap;
 }
 
+@mixin ng-deep {
+  :host ::ng-deep {
+    @content;
+  }
+}
+
 @mixin break-point($max-width) {
   @media (max-width: $max-width) {
     @content;
