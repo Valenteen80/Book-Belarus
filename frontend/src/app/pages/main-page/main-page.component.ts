@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
-import { ProductRequirements } from 'src/app/interfaces/product-requirements';
 import { CITIES } from './cities';
 
 
@@ -15,16 +14,14 @@ export class MainPageComponent implements OnInit {
 
   public cities: string[] = CITIES;
   public currentDate: Date = new Date;
-  public headerValue: string = 'Для поиска отеля заполните поля'
+  public headerValue: string = 'Для поиска отеля заполните поля';
   public searchButtonTitle: string = ButtonLabel.SEARCH;
   public form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
