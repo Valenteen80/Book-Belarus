@@ -1,1 +1,11 @@
-<p>hotel-list-page works!</p>
+<app-sort-panel
+    (sortEvent)="sortProducts($event)"
+    [sortButtons]="sortButtons"
+    >
+</app-sort-panel>
+<div class="products" *ngFor="let product of products">
+    <app-hotel-list-item
+        [product]="product"
+        >
+    </app-hotel-list-item>  
+</div>

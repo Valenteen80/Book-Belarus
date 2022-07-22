@@ -1,0 +1,18 @@
+<div class="sort-panel">
+    <div *ngFor="let sortButton of sortButtons">
+        <div class="button"
+            [ngClass]="{
+                button_active: sortButton.value === selectedButton.value,
+                button_asc:
+                sortButton.value === selectedButton.value &&
+                selectedButton.sortDirection === sortButtonDirectionASC,
+                button_desc:
+                sortButton.value === selectedButton.value &&
+                selectedButton.sortDirection === sortButtonDirectionDESC
+            }"
+            (click)="sort(sortButton)"
+            >
+            {{sortButton.label}}
+        </div>
+    </div>
+  </div>

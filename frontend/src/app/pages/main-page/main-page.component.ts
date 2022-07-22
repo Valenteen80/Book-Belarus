@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
+import { ProductService } from 'src/app/services/product/product.service';
 import { CITIES } from './cities';
 
 
@@ -21,6 +22,7 @@ export class MainPageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    public productService: ProductService,
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class MainPageComponent implements OnInit {
 
   public onSubmit(): void {
     this.router.navigate(['hotel-list']);
+    this.productService.setParams(this.form.value);
   }
 
 }
