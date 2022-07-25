@@ -182,14 +182,15 @@ const products = [
       },
 ];
 
-
 app.get('/products', (req, res) => {
-    res.send(products);
-    console.log(req.params);
-    console.log(req.query)
-    // console.log(req);
-    // const { city } = req.params;
-    // const filtered = products.filter((item) => item.city === city)
+  console.log(req.query)
+  // const { city } = req.params;
+  if (Object.keys(req.query).length == 0) {
+      res.send(products)
+  } else {
+      const filtered = products.filter((item) => item.city === req.query.city);
+      res.send(filtered);
+  }
 });
 
 app.listen(4000, () => {
