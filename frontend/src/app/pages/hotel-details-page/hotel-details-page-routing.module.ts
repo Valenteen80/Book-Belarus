@@ -4,7 +4,7 @@ import { HotelDetailsPageComponent } from './hotel-details-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: HotelDetailsPageComponent
   },
 ];

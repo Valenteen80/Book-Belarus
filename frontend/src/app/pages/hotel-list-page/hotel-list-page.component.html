@@ -6,6 +6,7 @@
 <div class="products" *ngFor="let product of products">
     <app-hotel-list-item
         [product]="product"
+        (selectedProduct)="redirectToDetailsPage($event)"
         >
     </app-hotel-list-item>  
 </div>

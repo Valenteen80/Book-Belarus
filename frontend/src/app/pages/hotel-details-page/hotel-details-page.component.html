@@ -1,1 +1,24 @@
-<p>hotel-details-page works!</p>
+<div class="product" 
+    *ngIf="product">
+    <img
+        class="product__img"
+        [src]="product.img"
+        [alt]="productAltImgAttribute"
+        />
+    <div class="product__info-wrapper">
+        <h3 class="product__name">{{ product.name }}</h3>
+        <span class="product__city">({{ product.city}})</span>
+        <p class="product__description">{{product.description}}</p>
+        <div class="price-rating__wrapper">
+            <span>Цена: {{ product.price | currency: "USD":"symbol-narrow":"1.2" }}</span>
+            <span>Рейтинг: {{ product.rating }}</span>
+        </div>
+        <button 
+            class="product__button"
+            pButton type="button" 
+            [label]="BookButtonTitle" 
+            (click)="redirectToHotelBookingPage()"
+            >
+        </button>
+    </div>
+</div>
