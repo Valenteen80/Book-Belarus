@@ -1,23 +1,21 @@
 <div class="product">
-    <div class="product__wrapper">
-      <img
-        class="product__img"
-        [src]="product.img"
-        [alt]="productAltImgAttribute"
+  <div class="product__wrapper">
+    <img
+      class="product__img"
+      [src]="product.img"
+      [alt]="productAltImgAttribute"
       />
-      <div class="product__info-wrapper">
-        <span class="product__name">{{ product.name }}</span>  
-        <span class="product__city">({{ product.city }})</span>     
-        <span class="product-price">Цена:{{ product.price | currency: "USD":"symbol-narrow":"1.2" }}  в сутки</span>
-      </div>
+    <div class="product__info-wrapper">
+      <span class="product__name">{{ product.name }}</span>  
+      <span class="product__city">({{ product.city }})</span>     
+      <span class="product-price">Цена:{{ product.price | currency: "USD":"symbol-narrow":"1.2" }}  в сутки</span>
     </div>
-
-    <button 
-        class="product__button"
-        pButton type="button" 
-        [label]="viewButtonTitle" 
-        (click)="redirectToDetailsPage()"
-        >
-    </button>   
   </div>
-  
+  <button 
+    class="product__button"
+    pButton type="button" 
+    [label]="viewButtonTitle" 
+    (click)="redirectToDetailsPage()"
+    >
+  </button>   
+</div>
