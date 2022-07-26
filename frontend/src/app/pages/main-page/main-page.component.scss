@@ -26,16 +26,14 @@
                 color: $red;
             }  
         }
+
+        .button {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: $brown;
+            text-transform:uppercase;
+            margin-right: 10px;
+            border: 2px solid $yellow;
+        }
     }
 }
-
-@include ng-deep {
-    .p-inputnumber-input, .p-inputtext {
-        font-size: 1.4rem;
-        width: 70px;
-    }
-
-    .p-button {
-        font-size: 1.8rem;
-    }
-  }

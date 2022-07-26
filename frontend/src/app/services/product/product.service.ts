@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductFilters } from 'src/app/interfaces/product-filters';
 import { environment } from 'src/environments/environment';
@@ -22,6 +22,16 @@ export class ProductService {
   }
 
   public getProducts(): Observable<Product []> {
-    return  this.http.get<Product[]>(`${this.apiUrl}/products`, {params: this.params})
+    return  this.http.get<Product[]>(`${this.apiUrl}/products`, {params: this.params});
   }
+
+  public getProductsById(id: number): Observable<Product | undefined>  {
+    return this.getProducts()
+      .pipe(
+        map((products: Product[]) => {   
+          return products.find((product: Product) => product.id === id);
+        })
+      );
+  }
+
 }

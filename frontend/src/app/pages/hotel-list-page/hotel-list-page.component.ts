@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ButtonValue } from 'src/app/enums/button-value-enum';
+import { RouteName } from 'src/app/enums/route-name-enum';
 import { Product } from 'src/app/interfaces/product';
 import { SortButton } from 'src/app/interfaces/sort-button';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -20,6 +22,7 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
   constructor(
     public productService: ProductService,
     public sortService: SortService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,10 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
       sortButton.value === ButtonValue.RATING
         ? this.sortService.sortByRating(sortButton.sortDirection, this.products)
         : this.sortService.sortByPrice(sortButton.sortDirection, this.products);
+  }
+
+  public redirectToDetailsPage(product: Product): void {
+    this.router.navigate([`/${RouteName.HOTEL_DETAILS}/${product.id}`]);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
 import { RouteName } from 'src/app/enums/route-name-enum';
@@ -11,6 +11,7 @@ import { Product } from 'src/app/interfaces/product';
 })
 export class HotelListItemComponent implements OnInit {
   @Input() public product: Product;
+  @Output() public selectedProduct: EventEmitter <Product> = new EventEmitter<Product>();
 
   public productAltImgAttribute: string = 'photo';
   public viewButtonTitle: string = ButtonLabel.VIEW;
@@ -22,8 +23,8 @@ export class HotelListItemComponent implements OnInit {
   ngOnInit(): void {
   }  
   
-  public redirectToDetailsPage(product:Product): void {
-    // this.router.navigate([`/${RouteName.HOTEL_DETAILS}/${product.id}`]);
+  public redirectToDetailsPage(): void {
+    this.selectedProduct.emit(this.product);
   }
 
 }
