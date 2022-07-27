@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ButtonLabel } from 'src/app/enums/button-label-enum';
+import { RouteName } from 'src/app/enums/route-name-enum';
+import { FormValidators } from 'src/app/utils/form-validators';
+import { COUNTRIES } from './countries';
 
 @Component({
   selector: 'app-hotel-booking-page',
@@ -6,10 +12,64 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hotel-booking-page.component.scss']
 })
 export class HotelBookingPageComponent implements OnInit {
+  public headerValue: string = 'введите свои данные';
+  public bookButtonTitle: string = ButtonLabel.BOOK;
+  public countries: string[] = COUNTRIES;
+  public autoResize: boolean = true;
+  public form: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  public buildForm(): void {
+    this.form = this.formBuilder.group({
+      firstName: ['', [Validators.required,  Validators.pattern(FormValidators.namePattern())]],
+      lastName: ['', [Validators.required, Validators.pattern(FormValidators.namePattern())]],
+      country: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      zipCode: ['', [Validators.required]],
+      paymentMethods: ['', [Validators.required]],
+      comment: ['']
+    });
+  }
+
+  public get firstName() {
+    return this.form.get('firstName');
+  }
+
+  public get lastName() {
+    return this.form.get('lastName');
+  }
+
+  public get country() {
+    return this.form.get('country');
+  }
+  
+  public get address() {
+    return this.form.get('address');
+  }
+
+  public get phoneNumber() {
+    return this.form.get('phoneNumber');
+  }
+
+  public get zipCode() {
+    return this.form.get('zipCode');
+  }
+
+  public get paymentMethods() {
+    return this.form.get('paymentMethods');
+  }
+
+  public onSubmit(): void {
+    this.router.navigate([RouteName.BOOKING_SUCCESS])
   }
 
 }
