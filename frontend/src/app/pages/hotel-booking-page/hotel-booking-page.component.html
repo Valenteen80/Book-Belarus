@@ -1,1 +1,207 @@
-<p>hotel-booking-page works!</p>
+<div class="book">
+    <h2 class="header">{{headerValue}}
+        <br>
+        <span>(согласно паспорту)</span>
+    </h2> 
+    <form class="form"
+        [formGroup]="form"
+        > 
+        <div class="form-control">
+            <h2 class="value">{{firstName?.value}}</h2>
+            <div>
+                <input 
+                    class="input p-inputtext-lg"
+                    type="text"
+                    pInputText
+                    formControlName="firstName"
+                    placeholder="введите имя"
+                    [ngClass]="{'input__error ng-invalid ng-dirty': firstName?.invalid && firstName?.touched}"
+                 />
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="firstName?.invalid && firstName?.touched"
+                    >
+                    <span *ngIf="firstName?.errors?.['required']">
+                        Введите имя
+                    </span>
+                    <span *ngIf="firstName?.errors?.['pattern']">
+                        Имя должно содержать только буквы
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="lastName form-control">
+            <h2 class="value">{{lastName?.value}}</h2>
+            <div>
+                <input 
+                    class="lastName input p-inputtext-lg"
+                    type="text"
+                    pInputText
+                    formControlName="lastName"
+                    placeholder="введите фамилию"
+                    [ngClass]="{'input__error ng-invalid ng-dirty': lastName?.invalid && lastName?.touched}"
+                 />
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="lastName?.invalid && lastName?.touched"
+                    >
+                    <span *ngIf="lastName?.errors?.['required']">
+                        Введите фамилию
+                    </span>
+                    <span *ngIf="lastName?.errors?.['pattern']">
+                        Фамилия должн содержать только буквы
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="country form-control">
+                <h2 class="value">{{country?.value}}</h2>
+            <div>
+                <p-dropdown 
+                    class="country input p-inputtext-lg"
+                    formControlName="country"
+                    [options]="countries"
+                    dropdownIcon="pi pi-caret-down" 
+                    placeholder="выберите страну"
+                    [ngClass]="{'input__error ng-invalid ng-dirty': country?.invalid && country?.touched}"
+                    >
+                </p-dropdown>
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="country?.invalid && country?.touched"
+                    >
+                    <span *ngIf="country?.errors?.['required']">
+                        Выберите страну
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="address form-control">
+                <h2 class="value">{{address?.value}}</h2>
+            <div>
+                <span class="p-input-icon-right icon-address">
+                    <i class="pi pi-home"></i>
+                    <input 
+                        class="inputAddress input p-inputtext-lg"
+                        type="text"
+                        pInputText
+                        formControlName="address"
+                        placeholder="Введите адрес"
+                        [ngClass]="{'input__error ng-invalid ng-dirty': address?.invalid && address?.touched}"
+                    />         
+                </span>
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="address?.invalid && address?.touched"
+                    >
+                    <span *ngIf="address?.errors?.['required']">
+                        Введите адрес
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="phoneNumber form-control">
+                <h2 class="value"> {{phoneNumber?.value}}</h2>
+            <div>
+                <span class="p-input-icon-right icon-phone">
+                    <i class="pi pi-phone"></i>
+                    <p-inputMask 
+                        class="inputPhoneNumber input p-inputtext-lg"
+                        placeholder="Введите № телефона"
+                        formControlName="phoneNumber" 
+                        mask="(999) 99-999-99-99"
+                        >
+                    </p-inputMask>         
+                </span>
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="phoneNumber?.invalid && phoneNumber?.touched"
+                    >
+                    <span *ngIf="phoneNumber?.errors?.['required']">
+                        Введите номер телефона
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="zipCode form-control">
+                <h2 class="value"> {{zipCode?.value}}</h2>
+            <div>
+                <span class="p-input-icon-right icon-zip">
+                    <i class="pi pi-envelope"></i>
+                    <p-inputMask 
+                        class="inputPhoneNumber input p-inputtext-lg"
+                        placeholder="Введите индекс"
+                        formControlName="zipCode" 
+                        mask="[999999]"
+                        >
+                    </p-inputMask>         
+                </span>
+                <span class="star">*</span>
+                <span class="input__error"
+                    *ngIf="zipCode?.invalid && zipCode?.touched"
+                    >
+                    <span *ngIf="zipCode?.errors?.['required']">
+                        Введите почтовый индекс
+                    </span>
+                </span>    
+            </div>
+        </div>
+        <div class="paymentMethods form-control">
+                <h2 class="value"> {{paymentMethods?.value}}</h2>
+            <div class="inputPaymentMethods">
+                <h3 class="value"> выберите способ оплаты<span class="star">*</span></h3>
+                <div>
+                    <p-radioButton 
+                        value="оплата картой" 
+                        label="оплата картой" 
+                        formControlName="paymentMethods" 
+                        inputId="opt1"
+                        >
+                    </p-radioButton>
+                </div>
+                <div class="">
+                    <p-radioButton
+                        value="оплата наличными" 
+                        label="оплата наличными" 
+                        formControlName="paymentMethods"  
+                        inputId="opt2"
+                        >
+                    </p-radioButton>
+                </div>
+                <div class="">
+                    <p-radioButton 
+                        value="оплата через PayPal" 
+                        label="оплата через PayPal"  
+                        formControlName="paymentMethods"  
+                        inputId="opt3"
+                        >
+                    </p-radioButton>
+                </div>
+            </div>
+        </div>
+        <div class="comment form-control">
+            <span class="p-float-label">
+                <textarea 
+                    class="inputComment p-inputtext-lg"
+                    inputId="textarea" 
+                    rows="3" 
+                    style="resize: none;" 
+                    cols="30"  pInputTextarea
+                    formControlName="comment"
+                    >
+                </textarea>
+                <label for="textarea">здесь вы можете оставить комментарии</label>
+            </span>
+        </div>
+        <div class="checkout">
+            <button 
+                class="button"
+                [disabled]="form.invalid"
+                pButton type="button" 
+                (click)="onSubmit()"
+                [label]="bookButtonTitle" 
+            >
+            </button>   
+        </div>
+    </form>
+</div>

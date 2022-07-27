@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   public product: Product;
   public productAltImgAttribute: string = 'photo';
-  public BookButtonTitle: string = ButtonLabel.BOOK;
+  public bookButtonTitle: string = ButtonLabel.BOOK;
   private subscription: Subscription;
 
   constructor(
