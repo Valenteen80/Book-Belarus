@@ -4,7 +4,7 @@ import { Subscription, switchMap } from 'rxjs';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
 import { RouteName } from 'src/app/enums/route-name-enum';
 import { Product } from 'src/app/interfaces/product';
-import { ProductFilters } from 'src/app/interfaces/product-filters';
+import { ProductFilter } from 'src/app/interfaces/product-filter';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   public product: Product;
   public productAltImgAttribute: string = 'photo';
   public bookButtonTitle: string = ButtonLabel.BOOK;
-  public bookingDetails: ProductFilters;
+  public bookingDetails: ProductFilter;
   public total: number;
   public diffDays: number;
   private subscription: Subscription;
@@ -51,11 +51,11 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
 
   private getBookingDetails(): void {
     this.productService.filterOptions$
-      .subscribe((bookingDetails: ProductFilters) => {
+      .subscribe((bookingDetails: ProductFilter) => {
         this.bookingDetails = bookingDetails;
         const timeDiff = new Date(bookingDetails.checkOutDate).getTime() - new Date(bookingDetails.checkInDate).getTime();
         this.diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        this.total = this.diffDays * this.product.price * bookingDetails.amountGuests;
+        this.total = this.diffDays * this.product.price * bookingDetails.quantityGuests;
       });
   }
 

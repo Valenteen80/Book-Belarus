@@ -51,7 +51,7 @@ export class MainPageComponent implements OnInit {
       city: [this.cities[0], [Validators.required]],
       checkInDate: [this.currentDate, [Validators.required]],
       checkOutDate: ['', [Validators.required]],
-      amountGuests: ['', [Validators.required]],
+      quantityGuests: ['', [Validators.required]],
     });
   }
 
@@ -59,8 +59,8 @@ export class MainPageComponent implements OnInit {
     return this.form.get('checkOutDate');
   }
 
-  public get amountGuests() {
-    return this.form.get('amountGuests');
+  public get quantityGuests() {
+    return this.form.get('quantityGuests');
   }
 
   public get checkInDate() {

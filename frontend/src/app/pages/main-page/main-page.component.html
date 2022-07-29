@@ -50,17 +50,17 @@
                 </span> 
             </div>
         </div>
-        <div class="amountGuests form-control">
+        <div class="quantityGuests form-control">
             <div>
                 <p-inputNumber 
-                    formControlName="amountGuests"
+                    formControlName="quantityGuests"
                     [showButtons]="true" 
                     [min]="1" 
                     [max]="30"
                     >
                 </p-inputNumber>                
                 <span class="input__error"
-                    *ngIf="amountGuests?.invalid"
+                    *ngIf="quantityGuests?.invalid"
                     >
                     укажите количество гостей
                 </span>    

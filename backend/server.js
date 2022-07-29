@@ -314,7 +314,7 @@ app.get('/products', (req, res) => {
         if (date) {
           const available = product.capacity - date.employedQuantity;
 
-          if (available < +req.query.amountGuests) {
+          if (available < +req.query.quantityGuests) {
               isFree = false;
           }
         } 
