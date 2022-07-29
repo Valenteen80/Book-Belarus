@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductFilters } from 'src/app/interfaces/product-filters';
 import { environment } from 'src/environments/environment';
@@ -10,19 +10,24 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
   private apiUrl: string = environment .apiUrl;
-  private params: HttpParams = new HttpParams;
+  public filterOptions$: BehaviorSubject<ProductFilters> = new BehaviorSubject<ProductFilters>({} as ProductFilters);
 
   constructor(
     public http: HttpClient,
   ) { }
 
-  public setParams(productFilters: ProductFilters): void {
-    this.params = this.params.append('city', productFilters.city);
-    this.params = this.params.append('amountGuests', productFilters.amountGuests);
+  public setFilterOptions(productFilters: ProductFilters): void {
+    this.filterOptions$.next(productFilters);
   }
 
   public getProducts(): Observable<Product []> {
-    return  this.http.get<Product[]>(`${this.apiUrl}/products`, {params: this.params});
+    let params = new HttpParams();
+    params = params.append('city', this.filterOptions$.getValue().city);
+    params = params.append('checkInDate', this.filterOptions$.getValue().checkInDate);
+    params = params.append('checkOutDate', this.filterOptions$.getValue().checkOutDate);
+    params = params.append('amountGuests', this.filterOptions$.getValue().amountGuests);
+
+    return  this.http.get<Product[]>(`${this.apiUrl}/products`, {params});
   }
 
   public getProductsById(id: number): Observable<Product | undefined>  {

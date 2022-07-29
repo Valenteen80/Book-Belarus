@@ -1,6 +1,6 @@
 export interface ProductFilters {
     city: string,
-    checkInDate: Date,
-    checkOutDate: Date,
+    checkInDate: string,
+    checkOutDate: string,
     amountGuests: number
 }

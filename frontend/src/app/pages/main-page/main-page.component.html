@@ -22,7 +22,7 @@
                     dateFormat="dd.mm.yy" 
                     [readonlyInput]="true"
                     [minDate]="currentDate"
-                    [maxDate]="form.controls['checkOutDate'].value"
+                    [maxDate]="checkInMaxDate"
                     >
                 </p-calendar>
                 <span 
@@ -39,7 +39,7 @@
                     formControlName="checkOutDate"
                     dateFormat="dd.mm.yy" 
                     [readonlyInput]="true"
-                    [minDate]="form.controls['checkInDate'].value"
+                    [minDate]="checkOutMinDate"
                     >
                 </p-calendar>
                 <span 
@@ -56,7 +56,7 @@
                     formControlName="amountGuests"
                     [showButtons]="true" 
                     [min]="1" 
-                    [max]="20"
+                    [max]="30"
                     >
                 </p-inputNumber>                
                 <span class="input__error"

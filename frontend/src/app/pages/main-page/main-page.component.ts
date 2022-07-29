@@ -15,9 +15,11 @@ export class MainPageComponent implements OnInit {
 
   public cities: string[] = CITIES;
   public currentDate: Date = new Date;
+  public checkInMaxDate: Date;
+  public checkOutMinDate: Date;
   public headerValue: string = 'Для поиска отеля заполните поля';
   public searchButtonTitle: string = ButtonLabel.SEARCH;
-  public form: FormGroup;
+  public form: FormGroup;  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +29,21 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.setCheckOutMinDate();
+    this.setCheckInMaxDate();
+  }
+
+  private setCheckInMaxDate(): void {
+    this.checkOutDate?.valueChanges.subscribe((data) => {
+      this.checkInMaxDate = new Date(data.getTime() - 86400000);   
+     });
+  }
+
+  private setCheckOutMinDate(): void {
+    this.checkOutMinDate = new Date(new Date().getTime() + 86400000);
+    this.checkInDate?.valueChanges.subscribe((data) => {
+      this.checkOutMinDate = new Date(data.getTime() + 86400000);     
+     });
   }
 
   public buildForm(): void {
@@ -52,7 +69,7 @@ export class MainPageComponent implements OnInit {
 
   public onSubmit(): void {
     this.router.navigate(['hotel-list']);
-    this.productService.setParams(this.form.value);
+    this.productService.setFilterOptions(this.form.value);   
   }
 
 }
