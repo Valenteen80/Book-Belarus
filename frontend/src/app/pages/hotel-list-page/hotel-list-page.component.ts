@@ -17,6 +17,7 @@ import { SORTBUTTONS } from './sortButton';
 export class HotelListPageComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public products: Product[];
+  public isProducts: boolean = true;
   public sortButtons: SortButton[] = SORTBUTTONS;
 
   constructor(
@@ -37,6 +38,7 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
     this.subscription = this.productService.getProducts()
       .subscribe((products: Product[]) => {
         this.products = products;
+        this. isProducts = this.products.length === 0 ? false : true;
       });
   }
 

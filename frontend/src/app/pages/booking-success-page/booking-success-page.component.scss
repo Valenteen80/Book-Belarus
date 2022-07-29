@@ -2,15 +2,11 @@
 @import "../../../assets/scss/variables";
 @import "../../../assets/scss/mixins";
 
-.successMessage-wrapper {
+.success-message {
     @include display-flex($center, $center);
     width: 100%;
     height: 100%;
-    
-    .successMessage {
-        font-size: 2.2rem;
-        font-weight: bold;
-        color: $brown;
-    }
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: $brown;
 }
-

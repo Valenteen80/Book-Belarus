@@ -31,7 +31,7 @@ const products = [
         busyDates: [
           {date: "2022-08-01", employedQuantity: 25},
           {date: "2022-08-02", employedQuantity: 25},
-          {date: "2022-08-03", employedQuantity: 25},
+          {date: "2022-08-03", employedQuantity: 30},
         ]
       },
       {
