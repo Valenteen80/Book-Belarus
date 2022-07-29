@@ -40,6 +40,23 @@
             flex-direction: column;
             @include display-flex($spaceBetween);
             width: 100%;
+
+            .price {
+                margin-top: 10px;
+            }
+        }
+
+        .booking-details__wrapper {
+            margin-top: 10px;
+
+            .interval, .quantityGuests {
+                margin-bottom: 10px;
+            }
+
+            .total {
+                text-transform: uppercase;
+                color: $red;
+            }
         }
 
         .product__button {

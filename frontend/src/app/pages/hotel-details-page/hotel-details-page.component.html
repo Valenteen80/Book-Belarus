@@ -10,9 +10,27 @@
         <span class="product__city">({{ product.city}})</span>
         <p class="product__description">{{product.description}}</p>
         <div class="price-rating__wrapper">
-            <span>Цена: {{ product.price | currency: "USD":"symbol-narrow":"1.2" }}</span>
             <span>Рейтинг: {{ product.rating }}</span>
+            <span class="price">Стоимость одних суток на человека: {{ product.price | currency: "USD":"symbol-narrow":"1.2" }}</span>
         </div>
+        <div class="booking-details__wrapper">
+            <div class="interval">
+                <span> 
+                С{{bookingDetails.checkInDate| date:"dd/MM/yyyy"}} 
+                до {{bookingDetails.checkOutDate | date:"dd/MM/yyyy"}} 
+                (колличество: {{diffDays}})
+                </span>
+            </div>
+            <div class="quantityGuests">
+                <span> Колличество гостей: {{bookingDetails.amountGuests}} </span>            
+            </div>
+            <div class="total">
+                <span> Итоговая сумма: {{total | currency: "USD":"symbol-narrow":"1.2"}} </span>            
+            </div>
+        </div>
+            
+        
+
         <button 
             class="product__button"
             pButton type="button" 
