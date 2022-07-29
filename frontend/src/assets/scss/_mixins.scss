@@ -14,6 +14,16 @@
   }
 }
 
+@mixin button {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: $brown;
+  text-transform:uppercase;
+  margin-right: 10px;
+  border: 2px solid $yellow;
+}
+
+
 @mixin button-hover {
   color: $orange;
   transition: 0.2s ease-in-out;
