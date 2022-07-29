@@ -1,9 +1,5 @@
 const cors = require('cors');
 const express = require('express');
-const bodyParser = require('body-parser');
-const request = require('https');
-const { parse } = require('path');
-const jsonParser = express.json();
 const app = express();
 
 const corsOptions = {
@@ -16,7 +12,6 @@ const corsOptions = {
 
 app.options('*', cors(corsOptions));
 app.use(cors());
-app.use(bodyParser.json());
 
 const products = [
     {
