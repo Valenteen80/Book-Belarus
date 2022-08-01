@@ -19,7 +19,7 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   public bookingDetails: ProductFilter;
   public total: number;
   public diffDays: number;
-  private subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
 
   constructor(
@@ -33,11 +33,11 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   private getProductById(): void {
-    this.subscription = this.route.params
+    const subscription = this.route.params
       .pipe(
         switchMap((params: Params) => this.productService.getProductsById(+params['id']) 
       ))
@@ -47,16 +47,18 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
           this.getBookingDetails();
         }
       });
+    this.subscriptions.push(subscription);
   }
 
   private getBookingDetails(): void {
-    this.productService.filterOptions$
+    const subscription = this.productService.filterOptions$
       .subscribe((bookingDetails: ProductFilter) => {
         this.bookingDetails = bookingDetails;
         const timeDiff = new Date(bookingDetails.checkOutDate).getTime() - new Date(bookingDetails.checkInDate).getTime();
         this.diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         this.total = this.diffDays * this.product.price * bookingDetails.quantityGuests;
       });
+    this.subscriptions.push(subscription);
   }
 
   public redirectToHotelBookingPage(): void {
