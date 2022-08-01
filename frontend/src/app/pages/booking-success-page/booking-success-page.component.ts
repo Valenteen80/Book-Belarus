@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './booking-success-page.component.html',
   styleUrls: ['./booking-success-page.component.scss']
 })
-export class BookingSuccessPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class BookingSuccessPageComponent {
 
 }

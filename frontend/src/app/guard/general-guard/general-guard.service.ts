@@ -17,7 +17,7 @@ export class GeneralGuardService implements CanActivate, CanActivateChild {
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     if (Object.keys(this.productService.filterOptions$.getValue()).length !== 0) {
-      return of(true)
+      return of(true);
     }
 
     this.router.navigate([RouteName.ROOT]);
