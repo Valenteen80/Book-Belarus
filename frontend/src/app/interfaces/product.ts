@@ -9,5 +9,5 @@ export interface Product {
     price: number,
     rating: number,
     capacity: number,
-    busyDates: BusyDate
+    busyDates: BusyDate [],
 }

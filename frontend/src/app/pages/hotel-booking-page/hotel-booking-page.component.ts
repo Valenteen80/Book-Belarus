@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
 import { RouteName } from 'src/app/enums/route-name-enum';
+import { Product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product/product.service';
 import { FormValidators } from 'src/app/utils/form-validators';
 import { COUNTRIES } from './countries';
 
@@ -20,7 +22,8 @@ export class HotelBookingPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private productService: ProductService,
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +72,9 @@ export class HotelBookingPageComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.router.navigate([RouteName.BOOKING_SUCCESS])
+    this.productService.updatedProduct().subscribe((product: Product) => {
+      this.router.navigate([RouteName.BOOKING_SUCCESS]);
+    });
   }
 
 }

@@ -62,6 +62,7 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   public redirectToHotelBookingPage(): void {
+    this.productService.createUpdatedProduct(this.product);
     this.router.navigate([RouteName.HOTEL_BOOKING]);
   }
 
