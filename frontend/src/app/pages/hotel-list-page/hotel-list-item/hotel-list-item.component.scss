@@ -1,0 +1,37 @@
+@import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.product {
+    @include display-flex($spaceBetween, $center);
+    flex-wrap: nowrap;
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    .product__wrapper {
+        @include display-flex($flexStart, $center);
+        max-width: 90%;
+        flex-wrap: nowrap;
+
+        .product__img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .product__info-wrapper {
+            @include display-flex($flexStart, $center);
+            @include break-point($laptop) {
+                flex-direction: column;
+              }
+
+            .product__name, .product-price {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__button {
+        @include button;
+    }
+}

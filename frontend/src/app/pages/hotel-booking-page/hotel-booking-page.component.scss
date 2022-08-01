@@ -1,0 +1,74 @@
+@import "../../../assets/scss/colors";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.book {
+    margin: 20px;
+
+    .header {
+        color: $brown;
+        font-size: 2.2rem;
+        text-transform:uppercase;
+    }
+
+    .form {
+        color: $brown;
+        font-size: 1.2rem;
+
+        .form-control {
+            @include display-flex($spaceBetween, $flexStart);
+            flex-direction: column;
+            border: 0.5px solid $yellow;
+            margin-bottom: 10px;
+            height: 70px;
+            flex-wrap: nowrap;
+
+            .value {
+                margin: 5px;
+            }
+
+            .icon-zip, .icon-phone {
+                width: 155px;
+            }
+
+            .icon-address {
+                width: 350px;
+            }
+
+            .star {
+                color: $red;
+                font-size: 1.8rem;
+                margin-left: 5px;
+            }   
+
+
+            .input__error {
+                color: $red;
+            }
+        
+            .input__error::placeholder {
+                color: $red;
+            }
+
+            .inputAddress {
+                width: 350px;
+            }
+
+            .inputComment {
+                width: 350px;
+                height: 68px;
+            }
+        }
+
+        .paymentMethods {
+            height: 135px;
+            .inputPaymentMethods {
+                margin: 5px
+            }
+        }
+   
+        .button {
+            @include button;
+        } 
+    }
+}

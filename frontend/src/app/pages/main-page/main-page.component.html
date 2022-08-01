@@ -1,0 +1,78 @@
+
+<div class="wrap">
+    <h2 class="header">{{headerValue}}</h2>
+    <form 
+        class="form"
+        [formGroup]="form"
+        > 
+        <div class="city form-control">
+            <div>
+                <p-dropdown 
+                    formControlName="city"
+                    [options]="cities"
+                    dropdownIcon="pi pi-caret-down" 
+                    >
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="checkInDate form-control">
+            <div>
+                <p-calendar 
+                    formControlName="checkInDate"
+                    dateFormat="dd.mm.yy" 
+                    [readonlyInput]="true"
+                    [minDate]="currentDate"
+                    [maxDate]="checkInMaxDate"
+                    >
+                </p-calendar>
+                <span 
+                    class="input__error"
+                    *ngIf="!checkInDate?.touched"
+                    >
+                    укажите желаемую дату заселения
+                </span> 
+            </div>
+        </div>
+        <div class="checkOutDate form-control">
+            <div>
+                <p-calendar 
+                    formControlName="checkOutDate"
+                    dateFormat="dd.mm.yy" 
+                    [readonlyInput]="true"
+                    [minDate]="checkOutMinDate"
+                    >
+                </p-calendar>
+                <span 
+                    class="input__error"
+                    *ngIf="checkOutDate?.invalid"
+                    >
+                    укажите желаемую дату выселения
+                </span> 
+            </div>
+        </div>
+        <div class="quantityGuests form-control">
+            <div>
+                <p-inputNumber 
+                    formControlName="quantityGuests"
+                    [showButtons]="true" 
+                    [min]="1" 
+                    [max]="30"
+                    >
+                </p-inputNumber>                
+                <span class="input__error"
+                    *ngIf="quantityGuests?.invalid"
+                    >
+                    укажите количество гостей
+                </span>    
+            </div>
+        </div>
+        <button 
+            class="button"
+            [disabled]="form.invalid"
+            pButton type="button" 
+            (click)="onSubmit()"
+            [label]="searchButtonTitle" 
+            >
+        </button>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+@import "./colors";
+
+html,
+body {
+  font-family: Lato, sans-serif;
+  font-size: 10px;
+  background-color: $light_beige;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &_header,
+  &_footer {
+    flex: 0;
+  }
+  &_main {
+    flex: 1;
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../../../assets/scss/colors";
+@import "../../../../assets/scss/mixins";
+
+.sort-panel {
+  @include display-flex($flexEnd, $center);
+  margin: 5px 10px;
+
+  .button {
+    @include display-flex($center, $center);
+    margin: 5px;
+    font-size: 1.6rem;
+    min-width: 110px;
+
+    &:hover {
+      @include button-hover;
+    }
+
+    &_active {
+      background-color: $dark_beige;
+    }
+
+    &_asc::after {
+      content: " ⇧";
+    }
+
+    &_desc::after {
+      content: " ⇩";
+    }
+  }
+}

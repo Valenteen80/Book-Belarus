@@ -1,0 +1,21 @@
+<app-sort-panel
+    (sortEvent)="sortProducts($event)"
+    [sortButtons]="sortButtons"
+    >
+</app-sort-panel>
+<div 
+    class="products"
+    *ngFor="let product of products"
+    >
+    <app-hotel-list-item
+        [product]="product"
+        (selectedProduct)="redirectToDetailsPage($event)"
+        >
+    </app-hotel-list-item>  
+</div>
+<div 
+    *ngIf="!isProducts"
+    class="message"
+    >
+    <h3>по вашему запросу отелей не найдено!</h3>
+</div>
