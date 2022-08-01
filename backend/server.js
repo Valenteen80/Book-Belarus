@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const jsonParser = express.json();
 const app = express();
 
 const corsOptions = {
@@ -244,8 +245,8 @@ const products = [
         rating: 2,
         capacity: 30,
         busyDates: [
-          {date: "2022-08-01", employedQuantity: 30},
-          {date: "2022-08-02", employedQuantity: 30},
+          {date: "2022-08-01", employedQuantity: 25},
+          {date: "2022-08-02", employedQuantity: 24},
           {date: "2022-08-03", employedQuantity: 10},
         ]
       },
@@ -297,14 +298,14 @@ app.get('/products', (req, res) => {
   }
 
   function filterByAvailableDates(filtredByCityProducts) {
-    const converCheckInDate = convertDate(req.query.checkInDate);
-    const converCheckOutDate = convertDate(req.query.checkOutDate);
+    const convertCheckInDate = convertDate(req.query.checkInDate);
+    const convertCheckOutDate = convertDate(req.query.checkOutDate);
 
     filtredByCityProducts.forEach((product) => {
       let isFree = true;
-      for(let i = converCheckInDate; i < converCheckOutDate; i = i + 24*60*60*1000) {
+      for(let i = convertCheckInDate; i < convertCheckOutDate; i = i + 24*60*60*1000) {
         const dates = new Date(i).toISOString().substr(0,10);
-        const date = product.busyDates.find((busyDate) => {return busyDate.date === dates});
+        const date = product.busyDates.find(busyDate =>  busyDate.date === dates);
 
         if (date) {
           const available = product.capacity - date.employedQuantity;
@@ -330,6 +331,21 @@ function convertDate(date) {
 
   return Date.parse(`${formatDate.getFullYear()}-${month}-${day}`);
 }
+
+app.put("/products", cors(corsOptions), jsonParser, function(req, res){
+  if(!req.body) {
+      return res.sendStatus(400);
+  } else {
+      const product = req.body;
+      const id = req.body.id;
+      const index = products.findIndex((item) => item.id == id);
+      products[index] = {...product};
+      res.send({
+        Message: `Продукт с id: ${id} изменён`,
+        Product: products[index]
+      });
+  };
+});
 
 app.listen(4000, () => {
     console.log('Application listening on port 5000!');
