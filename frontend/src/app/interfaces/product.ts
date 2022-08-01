@@ -1,3 +1,5 @@
+import { BusyDate } from "./busy-date";
+
 export interface Product {
     id: number,
     name: string,
@@ -6,4 +8,6 @@ export interface Product {
     description: string,
     price: number,
     rating: number,
+    capacity: number,
+    busyDates: BusyDate [],
 }

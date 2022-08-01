@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouteName } from '../enums/route-name-enum';
+import { GeneralGuardService } from '../guard/general-guard/general-guard.service';
 import { MainLayoutComponent } from './main-layout.component';
 
 const routes: Routes = [
@@ -18,24 +19,28 @@ const routes: Routes = [
         loadChildren: () =>
           import('../pages/hotel-list-page/hotel-list-page.module').then(
             (m) => m.HotelListPageModule), 
+            canActivateChild: [GeneralGuardService]
       },
       {
         path: RouteName.HOTEL_DETAILS,
         loadChildren: () =>
           import('../pages/hotel-details-page/hotel-details-page.module').then(
             (m) => m.HotelDetailsPageModule), 
+            canActivateChild: [GeneralGuardService]
       },
       {
         path:RouteName.HOTEL_BOOKING,
         loadChildren: () =>
           import('../pages/hotel-booking-page/hotel-booking-page.module').then(
             (m) => m.HotelBookingPageModule), 
+            canActivateChild: [GeneralGuardService]
       },
       {
         path: RouteName.BOOKING_SUCCESS,
         loadChildren: () =>
           import('../pages/booking-success-page/booking-success-page.module').then(
             (m) => m.BookingSuccessPageModule), 
+            canActivateChild: [GeneralGuardService]
       },
     ],
   },

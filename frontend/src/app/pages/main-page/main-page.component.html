@@ -22,7 +22,7 @@
                     dateFormat="dd.mm.yy" 
                     [readonlyInput]="true"
                     [minDate]="currentDate"
-                    [maxDate]="form.controls['checkOutDate'].value"
+                    [maxDate]="checkInMaxDate"
                     >
                 </p-calendar>
                 <span 
@@ -39,7 +39,7 @@
                     formControlName="checkOutDate"
                     dateFormat="dd.mm.yy" 
                     [readonlyInput]="true"
-                    [minDate]="form.controls['checkInDate'].value"
+                    [minDate]="checkOutMinDate"
                     >
                 </p-calendar>
                 <span 
@@ -50,17 +50,17 @@
                 </span> 
             </div>
         </div>
-        <div class="amountGuests form-control">
+        <div class="quantityGuests form-control">
             <div>
                 <p-inputNumber 
-                    formControlName="amountGuests"
+                    formControlName="quantityGuests"
                     [showButtons]="true" 
                     [min]="1" 
-                    [max]="20"
+                    [max]="30"
                     >
                 </p-inputNumber>                
                 <span class="input__error"
-                    *ngIf="amountGuests?.invalid"
+                    *ngIf="quantityGuests?.invalid"
                     >
                     укажите количество гостей
                 </span>    

@@ -4,6 +4,7 @@ import { Subscription, switchMap } from 'rxjs';
 import { ButtonLabel } from 'src/app/enums/button-label-enum';
 import { RouteName } from 'src/app/enums/route-name-enum';
 import { Product } from 'src/app/interfaces/product';
+import { ProductFilter } from 'src/app/interfaces/product-filter';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -15,7 +16,11 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   public product: Product;
   public productAltImgAttribute: string = 'photo';
   public bookButtonTitle: string = ButtonLabel.BOOK;
-  private subscription: Subscription;
+  public bookingDetails: ProductFilter;
+  public total: number;
+  public diffDays: number;
+  private subscriptions: Subscription[] = [];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -28,22 +33,36 @@ export class HotelDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   private getProductById(): void {
-    this.subscription = this.route.params
+    const subscription = this.route.params
       .pipe(
         switchMap((params: Params) => this.productService.getProductsById(+params['id']) 
       ))
       .subscribe((product: Product | undefined) => {
         if (product) {
-          this.product = product
+          this.product = product;
+          this.getBookingDetails();
         }
       });
+    this.subscriptions.push(subscription);
+  }
+
+  private getBookingDetails(): void {
+    const subscription = this.productService.filterOptions$
+      .subscribe((bookingDetails: ProductFilter) => {
+        this.bookingDetails = bookingDetails;
+        const timeDiff = new Date(bookingDetails.checkOutDate).getTime() - new Date(bookingDetails.checkInDate).getTime();
+        this.diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        this.total = this.diffDays * this.product.price * bookingDetails.quantityGuests;
+      });
+    this.subscriptions.push(subscription);
   }
 
   public redirectToHotelBookingPage(): void {
+    this.productService.createUpdatedProduct(this.product);
     this.router.navigate([RouteName.HOTEL_BOOKING]);
   }
 

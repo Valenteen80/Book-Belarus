@@ -40,16 +40,27 @@
             flex-direction: column;
             @include display-flex($spaceBetween);
             width: 100%;
+
+            .price {
+                margin-top: 10px;
+            }
+        }
+
+        .booking-details__wrapper {
+            margin-top: 10px;
+
+            .interval, .quantityGuests, .total {
+                margin-bottom: 10px;
+            }
+
+            .total {
+                text-transform: uppercase;
+                color: $red;
+            }
         }
 
         .product__button {
-            margin-top: 15px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: $brown;
-            text-transform:uppercase;
-            margin-right: 10px;
-            border: 2px solid $yellow;
+            @include button;
         } 
     }
 }
